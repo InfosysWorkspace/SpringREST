@@ -1,4 +1,4 @@
-package api;
+package com.infy.api;
 
 import com.infy.dto.CustomerDTO;
 import com.infy.exception.InfyBankException;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/infyBank")
+@RequestMapping(value = "/infybank")
 public class CustomerAPI {
 
     @Autowired

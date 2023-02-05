@@ -44,6 +44,8 @@ public class CustomerServiceImpl implements CustomerService{
             cust.setName(customer.getName());
             cust.setEmailId(customer.getEmailId());
             cust.setDateOfBirth(customer.getDateOfBirth());
+
+            customerDTOS.add(cust);
         });
 
         if(customerDTOS.isEmpty()){
