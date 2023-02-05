@@ -19,6 +19,7 @@ public class CustomerServiceImpl implements CustomerService{
     @Autowired
     private CustomerRepository customerRepository;
 
+    //Read Operation
     @Override
     public CustomerDTO getCustomer(Integer customerId) throws InfyBankException {
         Optional<Customer> optional = customerRepository.findById(customerId);
@@ -54,5 +55,18 @@ public class CustomerServiceImpl implements CustomerService{
 
         return customerDTOS;
 
+    }
+
+    //Create Operation
+    @Override
+    public Integer addCustomer(CustomerDTO customer){
+        Customer customerEntity = new Customer();
+        customerEntity.setCustomerId(customer.getCustomerId());
+        customerEntity.setName(customer.getName());
+        customerEntity.setEmailId(customer.getEmailId());
+        customerEntity.setDateOfBirth(customer.getDateOfBirth());
+
+        Customer customerEntity2 = customerRepository.save(customerEntity);
+        return customerEntity2.getCustomerId();
     }
 }
