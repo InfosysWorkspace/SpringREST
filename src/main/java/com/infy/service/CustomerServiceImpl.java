@@ -69,4 +69,12 @@ public class CustomerServiceImpl implements CustomerService{
         Customer customerEntity2 = customerRepository.save(customerEntity);
         return customerEntity2.getCustomerId();
     }
+
+    //Update Operation
+    @Override
+    public void updateCustomer(Integer customerId, String emailId) throws InfyBankException{
+        Optional<Customer> customer = customerRepository.findById(customerId);
+        Customer c = customer.orElseThrow(() -> new InfyBankException("Service.CUSTOMER_NOT_FOUND"));
+        c.setEmailId(emailId);
+    }
 }

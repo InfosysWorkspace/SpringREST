@@ -13,4 +13,7 @@ public interface CustomerService {
 
     //Create Operation
     public Integer addCustomer(CustomerDTO customer) throws InfyBankException;
+
+    //Update Operation
+    public void updateCustomer(Integer customerId, String emailId) throws InfyBankException;
 }

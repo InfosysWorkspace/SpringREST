@@ -31,8 +31,8 @@ public class CustomerAPI {
 
     @GetMapping(value ="/customers/{customerId}")
     public ResponseEntity<CustomerDTO> getCustomer(@PathVariable Integer customerId) throws InfyBankException{
-        CustomerDTO customerDTO = customerService.getCustomer(customerId);
-        return new ResponseEntity<>(customerDTO, HttpStatus.OK);
+        CustomerDTO customer = customerService.getCustomer(customerId);
+        return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
     //Create Operation
@@ -42,5 +42,13 @@ public class CustomerAPI {
         String successMessage = environment.getProperty("API.INSERT_SUCCESS") + customerId;
 
         return new ResponseEntity<>(successMessage, HttpStatus.CREATED);
+    }
+
+    //Update Operation
+    @PutMapping(value = "/customers/{customerId}")
+    public ResponseEntity<String> updateCustomer(@PathVariable Integer customerId, @RequestBody CustomerDTO customer) throws InfyBankException{
+        customerService.updateCustomer(customerId, customer.getEmailId());
+        String successMessage = environment.getProperty("API.UPDATE_SUCCESS");
+        return new ResponseEntity<>(successMessage, HttpStatus.OK);
     }
 }
