@@ -51,4 +51,12 @@ public class CustomerAPI {
         String successMessage = environment.getProperty("API.UPDATE_SUCCESS");
         return new ResponseEntity<>(successMessage, HttpStatus.OK);
     }
+
+    //Delete Operation
+    @DeleteMapping(value = "/customers/{customerId}")
+    public ResponseEntity<String> deleteCustomer(@PathVariable Integer customerId) throws InfyBankException{
+        customerService.deleteCustomer(customerId);
+        String successMessage = environment.getProperty("API.DELETE_SUCCESS");
+        return new ResponseEntity<>(successMessage, HttpStatus.OK);
+    }
 }
