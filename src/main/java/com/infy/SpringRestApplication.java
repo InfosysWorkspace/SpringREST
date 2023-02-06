@@ -20,7 +20,15 @@ public class SpringRestApplication implements CommandLineRunner {
 	//Spring REST TEMPLATE
 	@Override
 	public void run(String... args)throws Exception{
-		getCustomerDetails(1002);
+		// Consuming GET REST API with RestTemplate
+		//getCustomerDetails(1002);
+
+		// Consuming POST REST API with RestTemplate
+		CustomerDTO customerDTO = new CustomerDTO();
+		customerDTO.setCustomerId(1004);
+		customerDTO.setName("Fatima");
+		customerDTO.setEmailId("fatima@infy.com");
+		addCustomer(customerDTO);
 	}
 
 	// Consuming GET REST API with RestTemplate
@@ -32,7 +40,14 @@ public class SpringRestApplication implements CommandLineRunner {
 		LOGGER.info("\n");
 	}
 
-
+	// Consuming POST REST API with RestTemplate
+	public void addCustomer (CustomerDTO customer){
+		String url = "http://localhost:5558/infybank/customers";
+		RestTemplate restTemplate = new RestTemplate();
+		String response = restTemplate.postForObject(url, customer, String.class);
+		LOGGER.info(response);
+		LOGGER.info("\n");
+	}
 
 
 }
