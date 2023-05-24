@@ -30,13 +30,14 @@ public class SpringRestApplication implements CommandLineRunner {
 //		customerDTO.setEmailId("fatima@infy.com");
 //		addCustomer(customerDTO);
 
-		//Consuming PUT REST API with RestTemplate
-		CustomerDTO customerDTOS = new CustomerDTO();
-		customerDTOS.setCustomerId(1004);
-		customerDTOS.setEmailId("fatimahGide@infy.com");
-		updateCustomer(customerDTOS);
+//		//Consuming PUT REST API with RestTemplate
+//		CustomerDTO customerDTOS = new CustomerDTO();
+//		customerDTOS.setCustomerId(1004);
+//		customerDTOS.setEmailId("fatimahGide@infy.com");
+//		updateCustomer(customerDTOS);
 
-
+		// Consuming DELETE REST API with RestTemplate
+		deleteCustomer(1003);
 
 
 	}
@@ -68,4 +69,12 @@ public class SpringRestApplication implements CommandLineRunner {
 		LOGGER.info("\n");
 	}
 
+	// Consuming DELETE REST API with RestTemplate
+	public void deleteCustomer(Integer customerId){
+		String url = "http://localhost:5558/infybank/customers/{customerId}";
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.delete(url, customerId);
+		LOGGER.info("Customer deleted successfully");
+		LOGGER.info("\n");
+	}
 }
